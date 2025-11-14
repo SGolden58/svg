@@ -28,9 +28,9 @@
       <rdf:Description rdf:about=""
             xmlns:xmp="http://ns.adobe.com/xap/1.0/"
             xmlns:xmpGImg="http://ns.adobe.com/xap/1.0/g/img/">
-         <xmp:MetadataDate>2025-11-14T16:47:59+08:00</xmp:MetadataDate>
-         <xmp:ModifyDate>2025-11-14T16:47:59+08:00</xmp:ModifyDate>
-         <xmp:CreateDate>2025-11-14T16:47:59+08:00</xmp:CreateDate>
+         <xmp:MetadataDate>2025-11-14T16:52:15+08:00</xmp:MetadataDate>
+         <xmp:ModifyDate>2025-11-14T16:52:15+08:00</xmp:ModifyDate>
+         <xmp:CreateDate>2025-11-14T16:52:15+08:00</xmp:CreateDate>
          <xmp:CreatorTool>Adobe Illustrator CS6 (Windows)</xmp:CreatorTool>
          <xmp:Thumbnails>
             <rdf:Alt>
@@ -47,13 +47,13 @@
             xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
             xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
             xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#">
-         <xmpMM:InstanceID>xmp.iid:45957D9F36C1F011BB45805695290ED5</xmpMM:InstanceID>
-         <xmpMM:DocumentID>xmp.did:45957D9F36C1F011BB45805695290ED5</xmpMM:DocumentID>
+         <xmpMM:InstanceID>xmp.iid:48957D9F36C1F011BB45805695290ED5</xmpMM:InstanceID>
+         <xmpMM:DocumentID>xmp.did:48957D9F36C1F011BB45805695290ED5</xmpMM:DocumentID>
          <xmpMM:OriginalDocumentID>uuid:5D20892493BFDB11914A8590D31508C8</xmpMM:OriginalDocumentID>
          <xmpMM:RenditionClass>proof:pdf</xmpMM:RenditionClass>
          <xmpMM:DerivedFrom rdf:parseType="Resource">
-            <stRef:instanceID>xmp.iid:D021861B2FC1F011BB45805695290ED5</stRef:instanceID>
-            <stRef:documentID>xmp.did:D021861B2FC1F011BB45805695290ED5</stRef:documentID>
+            <stRef:instanceID>xmp.iid:45957D9F36C1F011BB45805695290ED5</stRef:instanceID>
+            <stRef:documentID>xmp.did:45957D9F36C1F011BB45805695290ED5</stRef:documentID>
             <stRef:originalDocumentID>uuid:5D20892493BFDB11914A8590D31508C8</stRef:originalDocumentID>
             <stRef:renditionClass>proof:pdf</stRef:renditionClass>
          </xmpMM:DerivedFrom>
@@ -68,8 +68,8 @@
                </rdf:li>
                <rdf:li rdf:parseType="Resource">
                   <stEvt:action>saved</stEvt:action>
-                  <stEvt:instanceID>xmp.iid:45957D9F36C1F011BB45805695290ED5</stEvt:instanceID>
-                  <stEvt:when>2025-11-14T16:47:59+08:00</stEvt:when>
+                  <stEvt:instanceID>xmp.iid:48957D9F36C1F011BB45805695290ED5</stEvt:instanceID>
+                  <stEvt:when>2025-11-14T16:52:15+08:00</stEvt:when>
                   <stEvt:softwareAgent>Adobe Illustrator CS6 (Windows)</stEvt:softwareAgent>
                   <stEvt:changed>/</stEvt:changed>
                </rdf:li>
@@ -141,7 +141,7 @@
 	c2.748-4.454,5.024-9.188,6.819-14.193c1.795-5.001,2.692-9.57,2.692-13.705c0-4.13-0.961-6.414-2.873-6.854
 	c-1.437,0-3.229,1.254-5.385,3.753c-2.151,2.505-4.43,5.873-6.82,10.115c-2.395,4.243-4.789,9.25-7.178,15.012
 	C67.962,52.921,65.925,58.957,64.255,65.265z"/>
-<path fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.3" stroke-miterlimit="10" d="M68.202,158.593l0.283-30.637l0.003,0.002
+<path fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.5" stroke-miterlimit="10" d="M68.202,158.593l0.283-30.637l0.003,0.002
 	c3.412,3.674,8.222,5.509,14.431,5.509c4.785,0,9.211-1.087,13.281-3.264c4.065-2.172,8.313-6.145,12.743-11.91
 	c4.427-5.763,9.209-13.543,14.356-23.333c5.144-9.789,11.066-22.297,17.771-37.526c2.152-5.436,3.947-9.79,5.384-13.054
 	c1.438-3.263,2.692-5.762,3.77-7.505c1.076-1.739,2.031-2.881,2.871-3.427c0.836-0.541,1.852-0.816,3.053-0.816
