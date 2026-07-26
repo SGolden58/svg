@@ -13,4 +13,15 @@ jobs:
         uses: egad13/purge-jsdelivr-cache@v1
         with:
           # This tells jsDelivr to purge the entire main branch of your repo
-          url: https://cdn.jsdelivr.net/gh/SGolden58/svg@main/
+          url: |
+            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/
+            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/SVG%20Guitar/
+            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/SVG%20Guzheng/
+            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/SVG%20Ukulele/
+            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/SVG%20Piano/
+            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/SVG%20Violin/
+            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/SVG%20Destination/
+            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/Spotlight/
+
+
+            
