@@ -11,17 +11,20 @@ jobs:
     steps:
       - name: Purge via API
         run: |
-          # We manually fetch the list of changed files using the GitHub API 
-          # instead of checking out the code. This avoids the Node.js warning.
-          
+          # Fetch changed files
           FILES=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}" \
             | jq -r '.files[].filename')
 
-          for FILE in $FILES; do
-            echo "Purging: $FILE"
-            curl -s -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/$FILE"
+          # Loop through each file
+          echo "$FILES" | while read -r FILE; do
+            if [ -n "$FILE" ]; then
+              # Construct the URL and replace spaces with %20 for the API
+              ENCODED_FILE=$(echo "$FILE" | sed 's/ /%20/g')
+              echo "Purging: $ENCODED_FILE"
+              curl -s -o /dev/null -w "%{http_code} " "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/$ENCODED_FILE"
+            fi
           done
           
-          # Purge the root directory as well
-          curl -s -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/"
+          # Also purge the root directory
+          curl -s -o /dev/null -w "%{http_code}" "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/"
