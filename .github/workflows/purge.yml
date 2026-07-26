@@ -9,20 +9,8 @@ jobs:
   purge:
     runs-on: ubuntu-latest
     steps:
-      - name: Purge via API
-        run: |
-          # 1. Get the list of changed files from the commit
-          FILES=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}" \
-            | jq -r '.files[].filename')
-
-          # 2. Loop through each file
-          for FILE in $FILES; do
-            # IMPORTANT: This line converts spaces to %20 properly for the API
-            ENCODED_FILE=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$FILE'))")
-            
-            echo "Purging: $ENCODED_FILE"
-            
-            # 3. Send the purge request
-            curl -s -i "https://purge.jsdelivr.net/gh/SGolden58/svg@main/$ENCODED_FILE"
-          done
+      - name: Purge CDN Cache
+        uses: egad13/purge-jsdelivr-cache@v1
+        with:
+          # This tells jsDelivr to purge the entire main branch of your repo
+          url: https://cdn.jsdelivr.net/gh/SGolden58/svg@main/
