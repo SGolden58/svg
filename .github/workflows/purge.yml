@@ -6,12 +6,9 @@ on:
       - main
 
 jobs:
-  purge:
+  purge-cache:
     runs-on: ubuntu-latest
     steps:
-      - name: Purge CDN Cache
-        uses: egad13/purge-jsdelivr-cache@v1
-        with:
-          # This tells jsDelivr to clear the cache for the whole branch
-          url: |
-            https://cdn.jsdelivr.net/gh/SGolden58/svg@main/
+      - name: Purge jsDelivr CDN cache
+        run: |
+          curl -i -x GET  "https://purge.jsdelivr.net/gh/${{ github.respository }}@main/"
