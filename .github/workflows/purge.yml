@@ -9,7 +9,21 @@ jobs:
   purge:
     runs-on: ubuntu-latest
     steps:
-      - name: Purge jsDelivr
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Necessary to see what changed
+
+      - name: Get changed files and purge
         run: |
-          # This command tells jsDelivr to clear the cache for your main branch
-          curl -i https://purge.jsdelivr.net/gh/SGolden58/svg@main/
+          # Get a list of all files changed in this push
+          FILES=$(git diff --name-only HEAD^ HEAD)
+          
+          for FILE in $FILES; do
+            echo "Purging: $FILE"
+            # Send purge request for each specific file
+            curl -i "https://purge.jsdelivr.net/gh/SGolden58/svg@main/$FILE"
+          done
+          
+          # Also purge the root just in case
+          curl -i "https://purge.jsdelivr.net/gh/SGolden58/svg@main/"
