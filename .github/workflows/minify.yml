@@ -1,0 +1,43 @@
+```yaml
+name: Minify Assets
+on:
+  push:
+    branches:
+      - main # Runs every time you push to the main branch
+    paths:
+      - '**.css'
+      - '**.js'
+      - '!**.min.css' # Ignore files that are already minified
+      - '!**.min.js'
+
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Minify CSS
+        run: |
+          # Find all .css files (excluding .min.css) and minify them
+          find . -name "*.css" ! -name "*.min.css" | while read file; do
+            echo "Minifying $file..."
+            curl -X POST -s --data-urlencode "input@$file" https://www.toptal.com/developers/cssminifier/api/raw > "${file%.css}.min.css"
+          done
+
+      - name: Minify JS
+        run: |
+          # Find all .js files (excluding .min.js) and minify them
+          find . -name "*.js" ! -name "*.min.js" | while read file; do
+            echo "Minifying $file..."
+            curl -X POST -s --data-urlencode "input@$file" https://www.toptal.com/developers/javascript-minifier/api/raw > "${file%.js}.min.js"
+          done
+
+      - name: Commit and Push Minified Files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add *.min.css *.min.js
+          git commit -m "chore: auto-minify css/js" || echo "No changes to commit"
+          git push
+```
