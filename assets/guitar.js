@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", () => {
   // select both elements
   const targets = document.querySelectorAll('.Guitar-title, .Join-us');
@@ -39,4 +38,3 @@ setTimeout(() => {
 setTimeout(() => {
     if (txt) txt.style.opacity = "0";
 }, 24000);
-</script>
