@@ -63,3 +63,4 @@ jobs:
 
           git commit -m "chore: auto-minify selected assets" || true
           git push
+          
