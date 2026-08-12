@@ -1,43 +1,65 @@
-```yaml
-name: Minify Assets
+name: Minify selected CSS/JS
+
 on:
   push:
-    branches:
-      - main # Runs every time you push to the main branch
+    branches: [ "main" ]
     paths:
-      - '**.css'
-      - '**.js'
-      - '!**.min.css' # Ignore files that are already minified
-      - '!**.min.js'
+      - "assets/guitar.css"
+      - "assets/guitar.js"
+      - "assets/guzheng.css"
+      - "assets/guzheng.js"
+      - "assets/footer.css"
+      - "assets/footer.js"
+
+permissions:
+  contents: write
 
 jobs:
   minify:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Minify CSS
+      - name: Minify CSS (Toptal)
+        env:
+          TOOPTAL_CSS_URL: "https://www.toptal.com/developers/cssminifier/api/raw"
         run: |
-          # Find all .css files (excluding .min.css) and minify them
-          find . -name "*.css" ! -name "*.min.css" | while read file; do
-            echo "Minifying $file..."
-            curl -X POST -s --data-urlencode "input@$file" https://www.toptal.com/developers/cssminifier/api/raw > "${file%.css}.min.css"
+          set -e
+          for f in assets/guitar.css assets/guzheng.css assets/footer.css; do
+            out="${f%.css}.min.css"
+            echo "Minifying $f -> $out"
+            curl -sS -X POST \
+              --data-urlencode "input@${f}" \
+              "${TOOPTAL_CSS_URL}" > "${out}"
           done
 
-      - name: Minify JS
+      - name: Minify JS (Toptal)
+        env:
+          TOOPTAL_JS_URL: "https://www.toptal.com/developers/javascript-minifier/api/raw"
         run: |
-          # Find all .js files (excluding .min.js) and minify them
-          find . -name "*.js" ! -name "*.min.js" | while read file; do
-            echo "Minifying $file..."
-            curl -X POST -s --data-urlencode "input@$file" https://www.toptal.com/developers/javascript-minifier/api/raw > "${file%.js}.min.js"
+          set -e
+          for f in assets/guitar.js assets/guzheng.js assets/footer.js; do
+            out="${f%.js}.min.js"
+            echo "Minifying $f -> $out"
+            curl -sS -X POST \
+              --data-urlencode "input@${f}" \
+              "${TOOPTAL_JS_URL}" > "${out}"
           done
 
-      - name: Commit and Push Minified Files
+      - name: Commit and push minified files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add *.min.css *.min.js
-          git commit -m "chore: auto-minify css/js" || echo "No changes to commit"
+          set -e
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+
+          git add -f assets/**/*.min.css assets/**/*.min.js || true
+
+          if git diff --cached --quiet; then
+            echo "No minified changes."
+            exit 0
+          fi
+
+          git commit -m "chore: auto-minify selected assets" || true
           git push
-```
